@@ -8,10 +8,13 @@ project(trabalho)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-    roscpp
-    rospy
-    std_msgs
-    message_generation
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+  image_transport
+  sensor_msgs
+  cv_bridge
 )
 
 ## System dependencies are found with CMake's conventions
@@ -58,6 +61,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   AddTwoInts.srv
+  Movement.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -212,3 +216,12 @@ add_dependencies(add_two_ints_server trabalho_generate_messages_cpp)
 add_executable(add_two_ints_client src/client.cpp)
 target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 add_dependencies(add_two_ints_client trabalho_generate_messages_cpp)
+
+
+add_executable(robot src/robot.cpp)
+target_link_libraries(robot ${catkin_LIBRARIES})
+add_dependencies(robot trabalho_generate_messages_cpp)
+
+add_executable(imglistener src/img_listener.cpp)
+target_link_libraries(imglistener ${catkin_LIBRARIES})
+add_dependencies(imglistener trabalho_generate_messages_cpp)
