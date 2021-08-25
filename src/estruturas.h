@@ -11,10 +11,10 @@ enum Direcao
 
 enum Comando
 {
-  ESQUERDA,
+  CONTINUAR,
   FRENTE,
-  DIREITA,
-  CONTINUAR
+  ESQUERDA,
+  DIREITA
 };
 
 struct Posicao

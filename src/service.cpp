@@ -116,4 +116,6 @@ int main (int argc, char **argv)
 
   ros::ServiceServer server = nh.advertiseService("/movement", handle_move);
   ros::spin();
+
+  return 0;
 }
