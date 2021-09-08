@@ -60,7 +60,6 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  AddTwoInts.srv
   Movement.srv
 )
 
@@ -212,10 +211,6 @@ include_directories(
 add_executable(la_movement src/service.cpp)
 target_link_libraries(la_movement ${catkin_LIBRARIES})
 add_dependencies(la_movement trabalho_generate_messages_cpp)
-
-add_executable(add_two_ints_client src/client.cpp)
-target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
-add_dependencies(add_two_ints_client trabalho_generate_messages_cpp)
 
 
 add_executable(robot src/robot.cpp)
