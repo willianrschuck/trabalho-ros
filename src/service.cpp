@@ -1,8 +1,9 @@
 #include <ros/ros.h>
-#include <trabalho/Movement.h>
+#include <robot_actions/MovementData.h>
 #include "estruturas.h"
 
-bool handle_move(trabalho::Movement::Request &req, trabalho::Movement::Response &res)
+//Função para realizar a movimentação do robô.
+bool handle_move(robot_actions::MovementData::Request &req, robot_actions::MovementData::Response &res)
 {
   switch(req.dir) {
     case NORTE:

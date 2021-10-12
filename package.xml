@@ -44,6 +44,7 @@
   <depend>cv_bridge</depend>
   <depend>image_transport</depend>
   <depend>sensor_msgs</depend>
+  <depend>actionlib_msgs</depend>
   <build_depend>message_generation</build_depend>
   <build_depend>message_runtime</build_depend>
   <!--   Note that this is equivalent to the following: -->

@@ -9,12 +9,14 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 
+//Variaveis globais
 std::vector<cv::Mat> imagens;
 ros::Publisher *pub;
 ros::Rate *rate;
 
 cv::Mat calcularHistograma(cv::Mat mat);
 
+//Callback para retornar a imagem lida
 void imageCallback(const sensor_msgs::ImageConstPtr& msg){
 	try {
 		
@@ -41,6 +43,7 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg){
 	}
 }
 
+//Função para calcular o histograma e verificar qual é a imagem
 cv::Mat calcularHistograma(cv::Mat mat) {
 
 	cv::Mat hsv_mat;
@@ -69,16 +72,17 @@ int main(int argc, char **argv){
 	ros::init(argc,argv, "image_listener");
 	ros::NodeHandle nh;
 
-	/* THIS IS BAD AND WE NEED TO CHANGE IT */
+	//Imagens 
     imagens.push_back(calcularHistograma(cv::imread("/home/willian/catkin_ws/src/trabalho/src/images/vazia.png",    cv::IMREAD_COLOR)));
     imagens.push_back(calcularHistograma(cv::imread("/home/willian/catkin_ws/src/trabalho/src/images/frente.png",   cv::IMREAD_COLOR)));
     imagens.push_back(calcularHistograma(cv::imread("/home/willian/catkin_ws/src/trabalho/src/images/esquerda.png", cv::IMREAD_COLOR)));
     imagens.push_back(calcularHistograma(cv::imread("/home/willian/catkin_ws/src/trabalho/src/images/direita.png",  cv::IMREAD_COLOR)));
 
-	
+	//
 	image_transport::ImageTransport it(nh);
 	image_transport::Subscriber sub = it.subscribe("camera/image", 1, imageCallback);
 
+	//
 	ros::Publisher thePub = nh.advertise<std_msgs::Int64>("result", 1);
 	pub = &thePub;
 	ros::Rate time_rate(2);
